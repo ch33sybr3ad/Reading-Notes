@@ -1,6 +1,6 @@
-# High Performance Web Sites Notes, by Steve Souders
+# High Performance Web Sites Notes <br/> by Steve Souders
 
-Start: August 19th, 2015
+Start: August 19th, 2015 <br/>
 Finished: 
 
 ## Chapter 1: Make Fewer HTTP Requests
