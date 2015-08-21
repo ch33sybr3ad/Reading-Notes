@@ -105,3 +105,19 @@ Finished:
   - **Reducing DNS Lookups:**
     When the client’s DNS cache is empty, the number of DNS lookups is equal to the number of unique hostnames in the webpage. Reducing the number of unique host names reduces the number of DNS lookups.Using Keep-Alive reuses an existingconnection,thereby improving response times by avoiding TCP/IP overhead.
 
+## Chapter 10: Minify JavaScript
+  - **Minification:**
+    - Minification: the practice of removing unnecessary characters from code to reduce its size, thereby improving load times.
+    - Obfuscation: an alternative optimization that can be applied to source code. Like minification, it removes comments and white space,but it also munges the code. As part of munging, function and variable names are converted into smaller strings making the code more compact, as well as harder to read. Obfuscation is more error prone and harder to debug, Minification is prefered and recommended.
+    - The Savings: Minification can lead to 20-25% reduction in JavaScript file sizes on average. 
+    - You can also minify inlined JavaScript files for increased performance. Combining gzip and minification can lead to further increases in performance. Savings from minified CSS is typically less than minified JavaScript. It is still recommended, but you can further increase performance through optimizing your CSS by merging identical classes and removing un-used classes. 
+    
+
+
+
+
+
+
+
+
+
