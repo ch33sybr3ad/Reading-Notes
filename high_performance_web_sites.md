@@ -1,4 +1,4 @@
-# High Performance Web Sites <br/> by Steve Souders
+# High Performance Web Sites <br/> by Steve Souders - 2007
 
 Start: August 19th, 2015 <br/>
 Finished: 
@@ -85,7 +85,7 @@ Finished:
       You can also tye the desired dynamic behavior to the appropriate event using event handlers. 
     - CSS expressions are often never used and can be handled with either one-time expressions or event handlers. One misuse caused Yahoo! a 20 second delay
 
-## Chapter 7: Make JavaScript and CSS External
+## Chapter 8: Make JavaScript and CSS External
   - **Inline vs. External:**
     - Keeping your Javascript and CSS inline in raw terms is 30-50% faster than the external example. The external example benefitted from downloading in parrallel, but the benefits of one HTTP request compared to five was significant. 
     - The fewer the number of page views, the stronger the argument for inlining JavaScript and CSS. If a user frequently visits a page, having external components makes it more likely that they are unchanged and cached in the users browser, which can accumulate additional benefits. It's also a lot easier for different pages to share the same components, which can be cached if stored in external components. 
@@ -97,5 +97,11 @@ Finished:
     - Dynamic Inlining: 
       If the server knew already if the browser has components cached, it can make a more educated decision about what files to send. By returning a session-based cookie with the compo- nent, the home page server can make a decision about inlining based on the absence or presence of the cookie. 
 
-
+## Chapter 9: Reduce DNS Lookup
+  - **DNS Caching and TTLs:**
+    - DNS: The Domain Name System maps hostnames to IP addresses. It typically takes 20-120 milliseconds for the browser to look up the IP address for a given hostname, depending on load of requests on it, your proximity to it, and you bandwidth speed. 
+    - DNS lookups are cached for better performance. However, IP addresses change and that caches consume memory. Therefore,the DNS records have to be periodically flushed from the cache.
+    - TTL: DNS records return a lookup value containing a Time-To-Live (TTL) value. This tells the client how long the record can be cached.The average TTL value received by the client for a DNS record is half of the maximum TTL value.
+  - **Reducing DNS Lookups:**
+    When the client’s DNS cache is empty, the number of DNS lookups is equal to the number of unique hostnames in the webpage. Reducing the number of unique host names reduces the number of DNS lookups.Using Keep-Alive reuses an existingconnection,thereby improving response times by avoiding TCP/IP overhead.
 
