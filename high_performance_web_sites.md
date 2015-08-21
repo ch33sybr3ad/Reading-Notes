@@ -72,11 +72,18 @@ Finished:
     - Parallel download has clear benefits; however, it is disabled while a script is downloading. The browser will not start any other downloads, even if it's from a different hostname. If scripts are put at the top of the page, everything is blocked from loading until the script is finished loading. 
     - DEFER attribute: indicates that the script does not contain document.write, and is a clue to browsers that they can continue rendering. However, if a script can be deferred, it should just be moved to the bottom of the page. 
 
-## Chapter 6: Put Scripts at the Bottom
-
-
-
-
+## Chapter 6: Avoid CSS Expressions
+  - **CSS Expressions:**
+    A powerful (and dangerous) way to set CSS properties dynamically. The expression method can evaluate JavaScript functions. The frequency with which CSS expressions are evaluated is what makes them work, but it is also what makes CSS expressions bad for performance. 
+    > background-color: expression( (new Date()).getHours()%2 ? "#B8D4FF" : "#F08A00" );
+  - **Updating Expressions:**
+    The biggest problem with expressions are that they are evaluated more frequently than most people expect, i.e. when the page is rendered, resized, scrolled, clicked, and upon mouse movement. Moving the mouse around the page can easily generate more than 10,000 evaluations.
+  - **Working Around the Problem:**
+    - One-Time Expressions:
+      If the CSS expression has to be evaluated only once, it can overwrite itself as part of its execution.
+    - Event Handlers:
+      You can also tye the desired dynamic behavior to the appropriate event using event handlers. 
+    - CSS expressions are often never used and can be handled with either one-time expressions or event handlers. 
 
 
 
