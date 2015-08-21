@@ -83,11 +83,19 @@ Finished:
       If the CSS expression has to be evaluated only once, it can overwrite itself as part of its execution.
     - Event Handlers:
       You can also tye the desired dynamic behavior to the appropriate event using event handlers. 
-    - CSS expressions are often never used and can be handled with either one-time expressions or event handlers. 
+    - CSS expressions are often never used and can be handled with either one-time expressions or event handlers. One misuse caused Yahoo! a 20 second delay
 
-
-
-
+## Chapter 7: Make JavaScript and CSS External
+  - **Inline vs. External:**
+    - Keeping your Javascript and CSS inline in raw terms is 30-50% faster than the external example. The external example benefitted from downloading in parrallel, but the benefits of one HTTP request compared to five was significant. 
+    - The fewer the number of page views, the stronger the argument for inlining JavaScript and CSS. If a user frequently visits a page, having external components makes it more likely that they are unchanged and cached in the users browser, which can accumulate additional benefits. It's also a lot easier for different pages to share the same components, which can be cached if stored in external components. 
+  - **Home Pages:**
+    The only exception where inlining may be preferable is with home pages. Home pages have a high demand for responsiveness, high number of page views, lower primed cache percentage, and low component re-use rate. 
+  - **The Best of Both Worlds:**
+    - Post-Onload Download: 
+      You can inline your home page and then have the browser download additional external components to cache on subsequent page visits. The external components will be loaded after the inline has been completed loaded. You will have to worry about *double definition*, where scripts may be problematic if applied twice. Inserting components in invisible IFrame is an advanced solution.
+    - Dynamic Inlining: 
+      If the server knew already if the browser has components cached, it can make a more educated decision about what files to send. By returning a session-based cookie with the compo- nent, the home page server can make a decision about inlining based on the absence or presence of the cookie. 
 
 
 
