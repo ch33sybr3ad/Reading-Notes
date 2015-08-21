@@ -38,5 +38,24 @@ Finished:
     Refers to changing the file name of cached files in order to allows users to get updates when you change certain cached components. 
     The browser will not check for any changes until the expiration date of the expires header, so that completed new representations will be loaded fresh from the origin server. 
 
+## Chapter 4: Gzip Components
+  - **How Compression Works:**
+    We have been using the same file compression for decades for reducing file sizes in emails and to deliver compressed web pages in browsers. By reducing the actual size of HTTP responses, we can reduce response times. Gzip is the most popular and effective compression method.
+    > An "Accept-Encoding: gzip, deflate header" indicates support for compression in the web client. 
+    > Web server notifies web client of the use of compression using "Content-Encoding: gzip". 
+  - **What to Compress:**
+    - Most servers are configured to compress their HTML files, but it's also worthwhile to compress your scripts, stylesheets, or any text response including XML and JSON. You should not compress Image and PDF files because they are already compressed. 
+    - Compression utilizes additional CPU cyles on the server and it may not worthwhile to compress every file. However a general rule of thumb is to compress files that are greater than 1 or 2K.
+  - **The Savings:** 
+    Gzipping generally reduces the response rate by 70%. 
+  - **Proxy Caching:** 
+    Uzing compression would make your proxy caching more complicated. For example, if your proxy server initially cached a uncompressed file from a request that did not support gzip, it would subsequently return the uncompressed version for every following request. You're missing out on a lot of savings if following HTTP requests do support gzip. It's a lot worse if the situation is reversed and a browser that does not support gzip receives a compressed file. 
+    > You can solve this problem using a Vary: Accept-Encoding header. THe proxy server will not cache multiple versions of the response. 
+  - **Edge Cases:** 
+    There are several web browesers who state that they support compression, but with some known bugs. It's generally safer to use a browser whitelist approach and only allow proven browsers to receive compressed files. 
+
+
+
+
 
 
