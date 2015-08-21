@@ -106,12 +106,42 @@ Finished:
     When the client’s DNS cache is empty, the number of DNS lookups is equal to the number of unique hostnames in the webpage. Reducing the number of unique host names reduces the number of DNS lookups.Using Keep-Alive reuses an existingconnection,thereby improving response times by avoiding TCP/IP overhead.
 
 ## Chapter 10: Minify JavaScript
-  - **Minification:**
-    - Minification: the practice of removing unnecessary characters from code to reduce its size, thereby improving load times.
-    - Obfuscation: an alternative optimization that can be applied to source code. Like minification, it removes comments and white space,but it also munges the code. As part of munging, function and variable names are converted into smaller strings making the code more compact, as well as harder to read. Obfuscation is more error prone and harder to debug, Minification is prefered and recommended.
-    - The Savings: Minification can lead to 20-25% reduction in JavaScript file sizes on average. 
-    - You can also minify inlined JavaScript files for increased performance. Combining gzip and minification can lead to further increases in performance. Savings from minified CSS is typically less than minified JavaScript. It is still recommended, but you can further increase performance through optimizing your CSS by merging identical classes and removing un-used classes. 
-    
+    - **Minification:** 
+      the practice of removing unnecessary characters from code to reduce its size, thereby improving load times.
+    - **Obfuscation:** 
+      an alternative optimization that can be applied to source code. Like minification, it removes comments and white space,but it also munges the code. As part of munging, function and variable names are converted into smaller strings making the code more compact, as well as harder to read. Obfuscation is more error prone and harder to debug, Minification is prefered and recommended.
+    - **The Savings:** 
+      Minification can lead to 20-25% reduction in JavaScript file sizes on average. 
+    - **Additional Optimizations:** 
+      - You can also minify inlined JavaScript files for increased performance. 
+      - Combining gzip and minification can lead to further increases in performance. 
+      - Savings from minified CSS is typically less than minified JavaScript. It is still recommended, but you can further increase performance through optimizing your CSS by merging identical classes and removing un-used classes. 
+
+## Chapter 11: Avoid Redirects
+  - **Types of Redirects:**
+    - Redirect: used to reroute users from one URL to another.
+    - • 300 Multiple Choices (based on Content-Type)
+      • 301 Moved Permanently
+      • 302 Moved Temporarily (a.k.a. Found)
+      • 303 See Other (clarification of 302)
+      • 304 Not Modified
+      • 305 Use Proxy
+      • 306 (no longer used)
+      • 307 Temporary Redirect (clarification of 302)
+  - **How Redirects Hurt Performance:**
+    Nothing is displayed to the user until the redirect is completed and the HTML document is downloaded.Nothing in the page can be rendered and no components can be downloaded until the HTMLdocument has arrived. Inserting a redirect between the user and the HTML document delays everything in the page.
+  - **Alternatives to Redirects:**
+    - Missing Trailing Slash: 
+      For example, going to http://astrology.yahoo.com/astrology will cause a 301 redirect response containing a redirect to http://astrology.yahoo.com/astrology/. There are a couple work arounds, you should check to see if your web logs to see if a lot of 301 status codes were issued and determine if it is worthwhile to fix this issue.
+    - Connecting Web Sites: 
+      Imagine creating a new backend for an existing website. Connecting an old web site to a new one is just one manifestation of this common useforredirects. While reducing the complexity for developers, it degrades user experience. Some solutions include: Alias, mod_rewrite, and DirectorySlash, linking the new code with the old code, using CNAME to make both hostnames point to the same server. 
+    - Tracking Internal Traffic:
+      Redirects are frequently used to track the flow of traffic. An alternative would be to use the Referer's logging to track traffic patterns. Using Referer logging avoids sending the user through a redirect, thus improving response times. 
+    - Tracking Outbound Traffic: 
+      Using Referer would not be practical to log the amount of outbound traffic on your website. An alternative to redirects for outbound traffic is to use a beacon—an HTTP request that contains tracking information in the URL.
+    - Prettier URLs: 
+      Another motivation for redirects is to make URLs prettier and easier to remember. The key is to find a way to have these simpler URLs without the redirects. Rather than forcing users to undergo an additional HTTP request, it would be better to avoid the redirect using Alias, mod_rewrite, DirectorySlash, and directly linking code, as described in the earlier section “Connecting Web Sites.”
+
 
 
 
