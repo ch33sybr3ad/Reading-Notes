@@ -54,6 +54,24 @@ Finished:
   - **Edge Cases:** 
     There are several web browesers who state that they support compression, but with some known bugs. It's generally safer to use a browser whitelist approach and only allow proven browsers to receive compressed files. 
 
+## Chapter 5: Put Stylesheets at the Top
+  - **Progressive Rendering:**
+    refers to how browser to display whatever content it has as soon as possible. It is also important to give users visual feedback in terms of a progress indicator. Putting stylesheets on the bottom prohibits rendering in many browsers. Browsers block rendering to avoid having to redraw elements of the page if their styles change. Because of this browsers will typically wait for the stylesheets before showing visible components on the page. 
+  - **LINK tag vs @import rule:**
+    Those are only two ways you can include a stylesheet in your document. @import rule must always be at the top and causes an unexpected ordering of how the components are downloaded. It is preferable to always use the LINK tag over the @import rule.
+  - **Flash of Unstyled Content:**
+    The blank white screen phenomenon is due to browser behavior.
+    > If stylesheets are still loading, it is wasteful to construct the rendering tree, since you don’t want to paint anything at all until all stylesheets have been loaded and parsed. Otherwise you’ll run into a problem called FOUC (the flash of unstyled content prob- lem), where you show content before it’s ready.
+
+
+
+
+
+
+
+
+
+
 
 
 
