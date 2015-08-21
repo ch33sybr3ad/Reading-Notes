@@ -63,9 +63,16 @@ Finished:
     The blank white screen phenomenon is due to browser behavior.
     > If stylesheets are still loading, it is wasteful to construct the rendering tree, since you don’t want to paint anything at all until all stylesheets have been loaded and parsed. Otherwise you’ll run into a problem called FOUC (the flash of unstyled content prob- lem), where you show content before it’s ready.
 
+## Chapter 6: Put Scripts at the Bottom
+  - **Problems with Scripts:**
+    Progressive rendering is blocked for all content below the script.Moving scripts lower in the page means more content is rendered progressively.
+  - **Parallel Downloads:**
+    The biggest impact on response time is the number of components in the page. HTTP/1.1 specifications suggests that browsers download only two components in parallel per host name. If a web page evenly distributed its components accross two hostnames, the overall response time would be about twice as fast. Running too many computations in parrallel has its costs, Yahoo! Research has shown that splitting components accross two hostnames leads to better performance. 
+  - **Scripts Block Downloads:**
+    - Parallel download has clear benefits; however, it is disabled while a script is downloading. The browser will not start any other downloads, even if it's from a different hostname. If scripts are put at the top of the page, everything is blocked from loading until the script is finished loading. 
+    - DEFER attribute: indicates that the script does not contain document.write, and is a clue to browsers that they can continue rendering. However, if a script can be deferred, it should just be moved to the bottom of the page. 
 
-
-
+## Chapter 6: Put Scripts at the Bottom
 
 
 
