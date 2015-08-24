@@ -143,8 +143,12 @@ Finished:
       Another motivation for redirects is to make URLs prettier and easier to remember. The key is to find a way to have these simpler URLs without the redirects. Rather than forcing users to undergo an additional HTTP request, it would be better to avoid the redirect using Alias, mod_rewrite, DirectorySlash, and directly linking code, as described in the earlier section “Connecting Web Sites.”
 
 ## Chapter 12: Remove Duplicate Scripts
-  - **Types of Redirects:**
-
+  - **Duplicate Scripts:**
+    Two main factors increase the probability of a duplicate script happening: large team sizes and number of scripts. In the largest ten websites, two of them contained duplicate scripts. 
+  - **How Duplicate Scripts Hurt Performance:**
+    - unnecessary HTTP Requests: In IE, if a script is included twice and is not cacheable, the browser will generate two HTTP requests. 
+    - wasted JavaScript execution
+  
 
 
 
