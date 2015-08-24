@@ -148,7 +148,15 @@ Finished:
   - **How Duplicate Scripts Hurt Performance:**
     - unnecessary HTTP Requests: In IE, if a script is included twice and is not cacheable, the browser will generate two HTTP requests. 
     - wasted JavaScript execution
-  
+
+## Chapter 13: Configure ETags13
+  - **What is an ETag?:**
+    - ETag (or Entity Tags) are a mechanism that web servers and browsers use to validate cached components, basically a string that uniquely identifies a specific version of a component. The ETag header thwarts caching when a web site is hosted on more than one server.
+    - ETags provide another way to determine whether the component in the browser’s cache matches the one on the origin server
+  - **Problem with ETags:**
+    ETags won’t match when a browser gets the original component from one server and later makes a conditional GET request that goes to a different server. This is because they are typically constructed using attributes that make them unique to a specific server hosting a site. ETags works fine if you are only using one server, but if you are using a cluster of servers components will be secretly downloaded more often than is required, degrading performance. 
+  - **ETag Solutions:**
+    If you're using multiple servers, the most common solution is just to get rid of them. However, you can take advantage of their flexible validation capabilities by configuring your ETags. 
 
 
 
