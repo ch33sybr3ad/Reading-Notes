@@ -1,7 +1,7 @@
 # High Performance Web Sites <br/> by Steve Souders - 2007
 
 Start: August 19th, 2015 <br/>
-Finished: 
+Finished: August 25th, 2015
 
 ## Chapter 1: Make Fewer HTTP Requests
 - **Image Maps:**
@@ -149,7 +149,7 @@ Finished:
     - unnecessary HTTP Requests: In IE, if a script is included twice and is not cacheable, the browser will generate two HTTP requests. 
     - wasted JavaScript execution
 
-## Chapter 13: Configure ETags13
+## Chapter 13: Configure ETags
   - **What is an ETag?:**
     - ETag (or Entity Tags) are a mechanism that web servers and browsers use to validate cached components, basically a string that uniquely identifies a specific version of a component. The ETag header thwarts caching when a web site is hosted on more than one server.
     - ETags provide another way to determine whether the component in the browser’s cache matches the one on the origin server
@@ -158,7 +158,13 @@ Finished:
   - **ETag Solutions:**
     If you're using multiple servers, the most common solution is just to get rid of them. However, you can take advantage of their flexible validation capabilities by configuring your ETags. 
 
-
+## Chapter 14: Make Ajax Cacheable
+  - **Web 2.0, DHTML, and Ajax:**
+    - Web 2.0: First introduced by O’Reilly Media in 2004 and refers to how the next generation Internet will be used. 
+    - DHTML: Dynamic HTML, which allows the web page to change after the page has been loaded. This is accomplished with using JavaScript and CSS interactions with the DOM in the browser. 
+    - Ajax: Asynchronous JavaScript and XML, a technology used in DHTML so that the client can retrieve and display new information requested by the user without reloading the page.
+  - **Optimizing Ajax Requests:**
+    The best way to optimize Ajax requests is to make them cacheable, but there are other rules that also apply to Ajax requests, gzip, reducing DNS lookup, minifying JavaScript, avoid redirects, configuring or removing e-tags. Make sure your Ajax requests follow the performance guidelines, especially having a far future Expires header.
 
 
 
