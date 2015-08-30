@@ -27,6 +27,11 @@ Finished:
     - Yet Another Ruby Virtual Machine, the compiler implemented with Ruby 1.9, similar to JVM. You first compile your code into bytecode, a series of low-level instructions that the virtual machine under- stands. However, Ruby never exposes its compiler as an external tool and never compiles your Ruby code all the way into machine language. 
     - Ruby -> Tokens -> AST Nodes -> YARV instructions ----> C -> Machine Language
     - YARV is a stack-orientated virtual machine, it maintains a stack of values—mainly arguments and return values for the YARV instructions.
+  - Ruby compiles each distinct scope in your Ruby program—methods, blocks, classes, or modules, for example into a separate snippet of YARV instructions.
+  - Each snippet of YARV instructions, each scope in your Ruby program, has its own local table.
+  - Keyword Arguments: we can specify a name along with a default value for each method or block argument.
+
+## Chapter 3: Compilation
 
 
 
