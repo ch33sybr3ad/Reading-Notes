@@ -31,7 +31,29 @@ Finished:
   - Each snippet of YARV instructions, each scope in your Ruby program, has its own local table.
   - Keyword Arguments: we can specify a name along with a default value for each method or block argument.
 
-## Chapter 3: Compilation
+## Chapter 3: How Ruby Executes Your Code
+  -**YARV’s internal stack and your Ruby stack**
+    - Koichi Sasada and the Ruby core team designed YARV to use a stack pointer and a program counter, that is function like your computer's actual microprocessor. 
+    - YARV keeps track of not only its own internal stack, but also your Ruby program's *call stack*, making it a "double-stack" machine. 
+    - Executing Ruby with YARV using 1.9+ is 4.25 times faster than Ruby 1.8 versions and lower. Ruby 1.8 is faster with programs that run less than 11,000 iterations. 
+  -**Local and Dynamic Access of Ruby Variables**
+    - Ruby stores all of the values you save in variables on YARV’s stack, along with the parameters to and return values from the YARV instructions.
+    - Ruby uses two very different methods for saving and retrieving a value you save in a variable: local access and dynamic access.
+    - **Local Access**
+      - Ruby sets aside some space on YARV stack for any local variables when making a method call. 
+      - Ruby uses svar/cref to contain one of two things: either a pointer to a table of the special variables in the current method or to the current lexical scope. 
+      - YARV uses another pointer similar to the stack pointer, called the EP or environment pointer, to write in a new value for a variable when reassigned. 
+    - **Dynamic Variable Access**
+      - Ruby uses dynamic access when you use a variable that’s defined in a different scope
+
+
+
+
+
+
+
+
+
 
 
 
