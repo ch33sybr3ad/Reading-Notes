@@ -45,6 +45,9 @@ Finished:
       - YARV uses another pointer similar to the stack pointer, called the EP or environment pointer, to write in a new value for a variable when reassigned. 
     - **Dynamic Variable Access**
       - Ruby uses dynamic access when you use a variable that’s defined in a different scope
+      - Ruby uses dynamic access in order to obtain values further down the stack while executing code inside the block. 
+        - the EP pointers form a kind of ladder that Ruby can climb to access the local variables in the parent scope, the grandparent scope, and so on.
+        - Ruby uses the special variable at each level of the stack to preserve the value of your variable in different scopes.
 
 
 
