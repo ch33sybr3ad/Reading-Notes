@@ -49,7 +49,30 @@ Finished:
         - the EP pointers form a kind of ladder that Ruby can climb to access the local variables in the parent scope, the grandparent scope, and so on.
         - Ruby uses the special variable at each level of the stack to preserve the value of your variable in different scopes.
 
-
+## Chapter 4: Control Structures and Method Dispatch
+  - **YARV Contrl Structures:**
+    YARV has its only control structures like Ruby, except at a much lower level
+    - instead of if and unless, YARV uses branchif and branchunless
+    - for looping, YARV uses jump to change the program counter and move through your compiled program.
+    - method dispatch: The process where YARV uses send instructions
+    when your code calls a method.
+  - **How Ruby Executes an if Statement:**
+    - Ruby follows a pattern when implementing the if..else statement
+      - Evaluate condition
+      - Jump to false code if condition is false
+      - True code; jump past false code
+      - False code
+  - **Jumping From one Scope to Another:**
+    - In Ruby you can use break to exit the current scope, but the task is a little bit harder for YARV
+    - In order for YARV to know where to jump to Ruby uses the *throw* YARV instructions, which sends the execution path back up to a higher scope. 
+    - Catch Tables: a table of pointers that may be attached to any YARV code snippet. 
+      - while executing throw instructions, it will check the catch table to see whether it contains a break pointer for the current YARV instruction sequence. 
+      - If it doesn't find a catch table, Ruby starts to iterate down through the stack of rb_control_frame_t structures in search of a catch table containing a break pointer
+      - Once Ruby finds the catch table pointer, it resets both the Ruby call stack (the CFP pointer) and the internal YARV stack to reflect the new pro- gram execution point.
+      - **Other Uses:** If you call return from inside a block, Ruby raises an internal exception that it rescues with a catch table pointer in the same way it does when you call break. 
+        - Ruby uses the catch table to implement the control structures rescue, ensure, retry, redo, and next.
+  - **the send instruction: Ruby’s Most complex control structure**
+    - 
 
 
 
