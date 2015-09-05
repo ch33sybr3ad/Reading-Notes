@@ -74,8 +74,8 @@ Finished:
   - **the send instruction: Ruby’s Most complex control structure**
     - The send instruction tells YARV to jump to another method and start executing it.
     - YARV calls send -> Method Lookup -> Method Dispatch -> YARV executes target method
-  - ** Eleven Types of Ruby:**
-    During the method dispatch process, Ruby determines which type of method your code is trying to call.
+  - **Eleven Types of Ruby:**
+    During the method dispatch process, Ruby determines which type of method your code is trying to call. Most important are ISEQ, CFUNC, ATTRSET, and IVAR.
     - **ISEQ:** Most of the methods are referred to as *instruction sequence* methods. This is because Ruby compiles your code into a series of YARV bytecode instructions. 
     - The other 10 methods consists of YARV's internal method types. 
       - **CFUNC:** Using C code included directly inside the Ruby executable, these are the methods that Ruby implements rather than you. CFUNC stands for C function.
@@ -88,7 +88,11 @@ Finished:
       - **OPTIMIZED:** Ruby speeds up some important methods using this type, like the Kernel#send method.
       - **MISSING:** Ruby uses this method type if you ask for a method object from a module or class using Kernel#method and the method is missing.
       - **REFINED:** Ruby uses this method type in its implementation of refinements, a new feature introduced in version 2.0.
-  
+  - **Calling Normal Ruby Methods:** 
+    - VM_METHOD_ TYPE_ISEQ constant means that the ruby method contains YARV instructions. 
+    - Types of Arguments: Block Arguments, Optional Arguments, Splat Arguments Array, Standard and Post Arguments
+    - Calling a CFUNC method creates a new framestack just like ISEQ methods; however, Ruby uses a rb_control_frame_t structure with the type CFUNC isntead. 
+    - IVAR and ATTRSET are used to speed up the process of accessing and setting instance variables in your code. Using these special methods will speed up method dispatch and make your program run faster. Because both reader and writer methods are so short, Ruby does not need to create a new stack frame. 
 
 
 
