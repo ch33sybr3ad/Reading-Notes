@@ -72,7 +72,25 @@ Finished:
       - **Other Uses:** If you call return from inside a block, Ruby raises an internal exception that it rescues with a catch table pointer in the same way it does when you call break. 
         - Ruby uses the catch table to implement the control structures rescue, ensure, retry, redo, and next.
   - **the send instruction: Ruby’s Most complex control structure**
-    - 
+    - The send instruction tells YARV to jump to another method and start executing it.
+    - YARV calls send -> Method Lookup -> Method Dispatch -> YARV executes target method
+  - ** Eleven Types of Ruby:**
+    During the method dispatch process, Ruby determines which type of method your code is trying to call.
+    - **ISEQ:** Most of the methods are referred to as *instruction sequence* methods. This is because Ruby compiles your code into a series of YARV bytecode instructions. 
+    - The other 10 methods consists of YARV's internal method types. 
+      - **CFUNC:** Using C code included directly inside the Ruby executable, these are the methods that Ruby implements rather than you. CFUNC stands for C function.
+      - **ATTRSET:** A method of this type is created by the attr_writer method. ATTRSET stands for attribute set.
+      - **IVAR:** Ruby uses this method type when you call attr_reader. IVAR stands for instance variable.
+      - **BMETHOD:** Ruby uses this method type when you call define_method and pass in a proc object. Because the method is represented internally by a proc, Ruby needs to handle this method type in a special way.
+      - **ZSUPER:** Ruby uses this method type when you set a method to be public or private in a particular class or module when it was actually defined in some superclass. This method is not commonly used.
+      - **UNDEF:** Ruby uses this method type internally when it needs to remove a method from a class. Also, if you remove a method using undef_method, Ruby creates a new method of the same name using the UNDEF method type.
+      - **NOTIMPLEMENTED:** Like UNDEF, Ruby uses this method type to mark certain methods as not implemented. This is necessary, for example, when you run Ruby on a platform that doesn’t support a particular operating system call.
+      - **OPTIMIZED:** Ruby speeds up some important methods using this type, like the Kernel#send method.
+      - **MISSING:** Ruby uses this method type if you ask for a method object from a module or class using Kernel#method and the method is missing.
+      - **REFINED:** Ruby uses this method type in its implementation of refinements, a new feature introduced in version 2.0.
+  
+
+
 
 
 
