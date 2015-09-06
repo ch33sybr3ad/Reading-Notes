@@ -94,10 +94,22 @@ Finished:
     - Calling a CFUNC method creates a new framestack just like ISEQ methods; however, Ruby uses a rb_control_frame_t structure with the type CFUNC isntead. 
     - IVAR and ATTRSET are used to speed up the process of accessing and setting instance variables in your code. Using these special methods will speed up method dispatch and make your program run faster. Because both reader and writer methods are so short, Ruby does not need to create a new stack frame. 
 
-
-
-
-
+## Chapter 5: Object and Classes
+  - **Custom Ruby Objects:**
+    - Ruby saves each of your custom objects in a C structure called RObject.
+    - Every Ruby object is the combination of a class pointer and an array of instance variables.
+    - Each instance (RObject structure) contains a klass value that points to the RClass structure. 
+    - You can see the instance variable array using #instance_variables method and set them using #instance_variable_set method. 
+  - **Generic Ruby Objects:**
+    - Ruby source code internally refers to built-in object types, such as strings, integers, and symbols, as "generic" types.
+    - These types are stored with a different C structure instead of an RObject structure. (Strings -> RStrings, Array -> RArray)
+      - However, all of these structures shares the same RBasic information similar to RObject.
+  - **Simple Ruby Values:**
+    - small integers, symbols and other values do not require a structure at all. Ruby simply saves them right inside a VALUE pointer. 
+    - All small integers have a FIXNUM_FLAG, which lets Ruby know that the value is really small. 
+  - **RClass Structure:**
+    - A Ruby class is just a group of method definitions and a table of attribute names. The RClass structure must also contain a class pointer and an instance variable array. 
+    - Inheritance: Ruby implements single inheritance by allowing us to optionally specify one superclass when we create a class. Because of this the RClass Structure must also have a superclass pointer. 
 
 
 
